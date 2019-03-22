@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file was auto-generated from WSDL -->
+<!-- by the Apache Axis2 version: 1.6.4  Built on : Dec 28, 2015 (10:03:39 GMT) -->
+<serviceGroup>
+    <service name="ApproverService">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="approver.ApproverServiceMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">approver.ApproverServiceSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="approveOperation" mep="http://www.w3.org/ns/wsdl/in-out" namespace="urn:Approver">
+            <actionMapping>urn:Approver:loanPort:approveOperationRequest</actionMapping>
+            <outputActionMapping>urn:Approver:loanPort:approveOperationResponse</outputActionMapping>
+        </operation>
+    </service>
+</serviceGroup>

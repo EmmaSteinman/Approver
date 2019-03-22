@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ApproverDefinitions" targetNamespace="urn:Approver" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:app="urn:Approver" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:Approver" xmlns="http://www.w3.org/2001/XMLSchema">
+	<complexType name="propType">
+		<sequence>
+			<element name="name" type="xsd:string"/>
+			<element name="address" type="xsd:string"/>
+			<element name="amount" type="xsd:float"/>
+		</sequence>
+	</complexType>
+	<element name="proposal" type="app:propType"/>
+	<element name="rate" type="xsd:float"/>
+	</schema>
+  </types>
+  <message name="rateMessage">
+    <part name="rate" element="app:rate">
+    </part>
+  </message>
+  <message name="proposalMessage">
+    <part name="body" element="app:proposal">
+    </part>
+  </message>
+  <portType name="loanPort">
+    <operation name="approveOperation">
+      <input message="app:proposalMessage">
+    </input>
+      <output message="app:rateMessage">
+    </output>
+    </operation>
+  </portType>
+  <binding name="loanBinding" type="app:loanPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="approveOperation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Approver"/>
+      </input>
+      <output>
+        <soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Approver"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="ApproverService">
+    <port name="ApproverLoan" binding="app:loanBinding">
+      <soap:address location="http://127.0.0.1:8080/axis2/services/SoapApproverService"/>
+    </port>
+  </service>
+</definitions>
